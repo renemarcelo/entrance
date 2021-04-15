@@ -121,7 +121,7 @@ class WebsocketHandler:
         """
         if nfn["nfn_type"] != "pong":
             log.debug("WS SEND: {}".format(abbreviate(nfn)))
-        json = ujson.dumps(nfn)
+        json = ujson.dumps(nfn, reject_bytes=False)
         await self.ws.send(json)
 
     async def notify_error(self, error, **nfn):
